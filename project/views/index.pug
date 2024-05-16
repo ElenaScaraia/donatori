@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    title Pug and JS Example with Bootstrap
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+    style.
+      .navbar-custom {
+        background-color: #ff4444;
+      }
+      .footer-custom {
+        background-color: #ff4444;
+      }
+      .jumbotron-custom {
+        background-color: #ffdddd;
+        border: 1px solid #ff4444;
+      }
+      .card-custom {
+        border: 1px solid #ff4444;
+      }
+    script(src="/script.js")
+  body
+    // Navbar
+    nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
+      .container
+        a.navbar-brand(href='#') Donatori
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarNav
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='#') Home
+            li.nav-item
+              a.nav-link(href='#') Features
+            li.nav-item
+              a.nav-link(href='#') Pricing
+            li.nav-item
+              a.nav-link(href='#') Contact
+
+    // Main Content
+    .container.mt-5
+      .row
+        .col-md-12
+          .jumbotron.jumbotron-custom
+            h1.display-4.text-center.text-danger Donatori
+            p.lead.text-center Riepilogo dei dati dei Donatori
+      
+      .row#content.mt-4
+        // Le card saranno inserite qui da JavaScript
+
+    // Footer
+    footer.footer.footer-custom.mt-auto.py-3
+      .container
+        span.text-white.text-center.d-block © 2024 MyApp
+    script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')

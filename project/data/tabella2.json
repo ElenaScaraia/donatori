@@ -1,0 +1,9 @@
+[
+    { "id": 1, "nome_completo": "Elena Scaraia", "tipo_sangue": "B-" },
+    { "id": 2, "nome_completo": "Simone Camanitti", "tipo_sangue": "A+" },
+    { "id": 3, "nome_completo": "Mattia Panciroli", "tipo_sangue": "B+" },
+    { "id": 6, "nome_completo": "Andriano Rica", "tipo_sangue": "O-" },
+    { "id": 7, "nome_completo": "Jacopo Corbani", "tipo_sangue": "A+" },
+    { "id": 8, "nome_completo": "Daniel Hoffman", "tipo_sangue": "O+" },
+    { "id": 9, "nome_completo": "Danilo Folli", "tipo_sangue": "AB" }
+]
