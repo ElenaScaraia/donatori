@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo di Donazione del Sangue</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Modulo di Donazione del Sangue</h2>
+        <form id="donazioneForm">
+            <fieldset>
+                <legend>Inserisci i tuoi dati</legend>
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome completo:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tipo_sangue" class="form-label">Seleziona il tipo di sangue:</label>
+                    <select class="form-select" id="tipo_sangue" name="tipo_sangue" required>
+                        <option value="" disabled selected>Scegli il tipo di sangue</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <a href="https://andrianorica.alwaysdata.net/donazione_sangue/">
+                <button type="button" class="btn btn-primary">
+                    Torna Indietro
+                </button>
+            </a>
+            <button type="submit" class="btn btn-primary">Invia</button>
+            
+        </form>
+    </div>
+
+    <!-- Bootstrap JS Bundle (including Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.getElementById("donazioneForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var nome = document.getElementById("nome").value;
+            var tipoSangue = document.getElementById("tipo_sangue").value;
+
+            var utenteData = {
+                nome_completo: nome,
+                tipo_sangue: tipoSangue
+            };
+
+            var donazioneData = {
+                utente: nome
+            };
+
+            // Invia i dati dell'utente
+            fetch('https://andrianorica.alwaysdata.net/api_donazione/utenti', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(utenteData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dati utente inviati con successo:', data);
+                alert('Dati utente inviati con successo!');
+                
+                // Invia i dati di donazione dopo il completamento del primo fetch
+                return fetch('https://andrianorica.alwaysdata.net/api_donazione/donazione', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(donazioneData)
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dati di donazione inviati con successo:', data);
+                alert('Dati di donazione inviati con successo!');
+            })
+            .catch(error => {
+                console.error('Errore durante l\'invio dei dati di donazione:', error);
+                alert('Si è verificato un errore durante l\'invio dei dati di donazione. Si prega di riprovare.');
+            });
+        });
+    </script>
+</body>
+</html>
